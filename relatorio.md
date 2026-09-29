@@ -38,10 +38,10 @@ Na Matriz a última demorou demais, deixei rodando um tempão e fiz uma estimati
 ## Item 6: Análise dos Resultados
 
 **1. Qual implementação foi mais rápida e por quê?**
-A **Lista de Adjacência** ganhou disparado, principalmente nas densidades baixinhas (0.001 e 0.05). O motivo é que no `for` da lista a gente só olha os vizinhos que realmente existem, enquanto na Matriz o `for` tem que olhar todos os 2000 vértices pra ver se tem o número '1' na posição, perdendo mó tempo olhando zeros.
+A **Lista de Adjacência** ganhou disparado, principalmente nas densidades baixinhas (0.001 e 0.05). O motivo é que no `for` da lista a gente só olha os vizinhos que realmente existem, enquanto na Matriz o `for` tem que olhar todos os 2000 vértices pra ver se tem o número '1' na posição, perdendo muito tempo olhando zeros.
 
 **2. A ordem muda conforme a densidade cresce?**
-Na real não muda, a Lista continuou ganhando (ou pelo menos empatando) mesmo quando chegou na densidade de 0.5. Isso acontece porque mesmo quando o grafo tá super cheio (metade de chance de ter aresta), ainda assim você percorre só a metade do tamanho varrendo os vizinhos, em vez de percorrer tudo na Matriz. 
+Não muda, a Lista continuou ganhando (ou pelo menos empatando) mesmo quando chegou na densidade de 0.5. Isso acontece porque mesmo quando o grafo tá super cheio (metade de chance de ter aresta), ainda assim você percorre só a metade do tamanho varrendo os vizinhos, em vez de percorrer tudo na Matriz. 
 
 **3. Concorda com o custo teórico?**
 Concorda sim! O custo teórico da Lista é $O(n + \sum d(v)^2)$ (tabela do livro) que cresce com a densidade, e o da Matriz é $O(n^2 + mn)$ que já tem um custo base de $n^2$ muito alto pra começar. No espaço (memória) ficou mais claro ainda: a Matriz cravou em $4.000.000$ espaços fixos desde o primeiro teste (que é $n^2$), e a lista foi subindo de 5 mil pra 2 milhões conforme as arestas ($n + 2m$) aumentavam.
